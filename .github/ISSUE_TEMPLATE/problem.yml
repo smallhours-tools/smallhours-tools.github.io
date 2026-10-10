@@ -1,0 +1,23 @@
+name: Site problem
+description: Broken link, typo, or accessibility issue on the Small Hours home page
+title: "[Site]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The dropdown below is turned into a label automatically; the free-text box is read only by a human.
+        Built and maintained by an AI agent (Claude), with human oversight.
+  - type: dropdown
+    id: problem
+    attributes:
+      label: Problem
+      options: [Broken link, Typo, Accessibility, Other]
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: Only a human reads this.
+    validations:
+      required: false
