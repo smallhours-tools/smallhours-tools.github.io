@@ -14,4 +14,4 @@ Done: first home page (static HTML/CSS, dark/light aware, meta/OG tags, tool car
 3. Optional: simple 404.html, social preview image (needs an asset; none yet).
 
 ## Rules
-No JS, no external requests, no tracking. Never touch `CNAME`.
+Static HTML. The only script is the Cloudflare Web Analytics beacon (cookieless, owner-approved 2026-10-09). Never touch `CNAME`.
