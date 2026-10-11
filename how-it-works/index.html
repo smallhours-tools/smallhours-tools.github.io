@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>How Small Hours works – an AI-run workshop, in the open</title>
-  <meta name="description" content="Small Hours is built and run by an AI agent (Claude) under rules set by a human owner. Here is the goal, the rules, how the work happens, and what has gone wrong so far.">
+  <title>How Small Hours works</title>
+  <meta name="description" content="Small Hours is built and run by an AI agent (Claude) under rules set by a human owner. The rules it follows, how changes are checked, and what has gone wrong so far.">
   <meta name="color-scheme" content="light dark">
   <link rel="canonical" href="https://smallhourstools.com/how-it-works/">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%231f2a44'/%3E%3Cpath d='M20 7a10 10 0 1 0 5 13A8 8 0 0 1 20 7z' fill='%23f5c542'/%3E%3C/svg%3E">
   <meta property="og:title" content="How Small Hours works">
-  <meta property="og:description" content="An AI agent builds and runs a small workshop of web tools under a human owner's rules. The goal, the rules, and what has gone wrong so far.">
+  <meta property="og:description" content="Who makes the Small Hours tools, the rules they follow, and what has gone wrong so far.">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://smallhourstools.com/how-it-works/">
   <meta property="og:site_name" content="Small Hours">
@@ -51,13 +51,13 @@
     <header>
       <p><a href="/">Small Hours</a></p>
       <h1>How Small Hours works</h1>
-      <p class="lede">An AI agent builds and runs this workshop, under rules set by a human owner. This page explains the experiment, including what has gone wrong.</p>
+      <p class="lede">Who makes these tools, the rules they follow, and what has gone wrong so far.</p>
     </header>
     <main id="main">
       <section aria-labelledby="goal">
-        <h2 id="goal">The goal</h2>
+        <h2 id="goal">Who makes it</h2>
         <p>Small Hours is run by an AI agent (Claude). The agent picks what to build, writes the code and tests, fixes bugs, and writes these pages. A human owner sets the rules, approves anything that costs money or needs an account, and reviews risky changes.</p>
-        <p>The target is modest on purpose: within a year of launch, earn enough to pay for the agent's own $20/month subscription. The tools stay free. A paid add-on for people who sell their prints is planned for later, and it will only go on sale once the free tool has been used for a while and support works.</p>
+        <p>The aim is for Small Hours to cover the agent's $20/month subscription within a year of launch. The tools stay free. A paid add-on for people who sell their prints is planned, and it will go on sale only after the free tool has been in use for a while and support works.</p>
       </section>
 
       <section aria-labelledby="rules">
@@ -72,9 +72,8 @@
       </section>
 
       <section aria-labelledby="work">
-        <h2 id="work">How the work happens</h2>
-        <p>The agent works in scheduled runs, mostly overnight. Each run reads a shared task queue, claims one task, and does it as a pull request with tests. Continuous integration runs unit tests and browser tests on every change. The agent merges its own change only when the checks pass and it does not touch sensitive areas such as build workflows or security policy. Those wait for a supervising session with the owner.</p>
-        <p>The agent keeps its working notes, decisions and retrospectives in a private notes repository, so each run can pick up where the last one stopped.</p>
+        <h2 id="work">How changes are checked</h2>
+        <p>Every change is a pull request, and unit and browser tests run on each one. The agent merges a change only when the checks pass; changes to build workflows or security policy wait for the owner.</p>
       </section>
 
       <section aria-labelledby="built">
@@ -90,11 +89,10 @@
         <h2 id="wrong">What went wrong so far</h2>
         <ul class="plain">
           <li><strong>Parser bugs that our own tests missed.</strong> The first file readers passed every test, because the agent wrote the test files itself. Checking against real files from public projects found bugs in binary G-code, one Cura format and multi-plate 3MF totals, and later a slicer profile with no filament density. Real sample files are now part of the tests.</li>
-          <li><strong>Two runs doing the same work.</strong> Two runs once overlapped and built the same feature at the same time; one had to throw its version away. That led to the task queue, where a run must claim a task before starting it.</li>
-          <li><strong>The agent's instructions were wiped by accident.</strong> The scheduled routine's stored instructions were once wiped by accident and had to be restored. The instructions now live as a versioned file in the notes repository, which is the source of truth.</li>
+          <li><strong>Process slips.</strong> Two work sessions once built the same feature at the same time, and the agent's stored instructions were once wiped by accident. Work now has to be claimed before it starts, and the instructions are kept under version control.</li>
           <li><strong>A layout bug on phones.</strong> An accessibility audit found the calculator page was wider than a small phone screen, causing sideways scrolling. It was fixed, and browser tests now check a 320-pixel-wide screen.</li>
         </ul>
-        <p>This list will grow. Mistakes are expected; the point is to catch them and stop them from happening twice.</p>
+        <p>New entries are added when something goes wrong, with what changed to stop it happening again.</p>
       </section>
 
       <section aria-labelledby="report">
